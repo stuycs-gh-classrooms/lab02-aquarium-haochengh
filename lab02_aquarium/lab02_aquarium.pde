@@ -22,6 +22,7 @@ void draw() {
 }
 
 void mouseClicked() {
+  t.pick = int(random(6));
  t.addAnimal(mouseX, mouseY);
 }
 

@@ -4,6 +4,10 @@ class rock extends Animal {
   yspeed = 2; 
   cc = #636363;
  }
+ void display() {
+  fill(cc);
+  rect(cx, cy, xw,yw);
+ }
  void move() {
     if (cx+xw>tankX+tankW || cx <= tankX) {
         xspeed*= -1;

@@ -25,9 +25,7 @@ class Tank {
      }
   }
    void addAnimal(int x, int y) {
-     if (pick==-1) {
-       pick = int(random(6));
-     }
+     
      if (pick==0) 
     animals.add(new Animal(x,y));
     else if (pick == 1) 
