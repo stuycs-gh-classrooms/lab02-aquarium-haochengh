@@ -5,7 +5,6 @@ class Animal {
   int xw, yw;
   int lifespan; 
   int corpselife;
-  ArrayList<Integer> foods;
   
   Animal(int xx, int yy) {
    cx = xx;
@@ -14,7 +13,6 @@ class Animal {
    xspeed = yspeed = 1;
    xw = 40;
    yw = 20;
-   foods=new ArrayList<Integer>();
    lifespan = 400;
    corpselife=200;
    int xd = rand(2);
@@ -100,22 +98,39 @@ class Animal {
    return int(random(x)); 
   }
   
-  void listfoods() {
-   for (int i =0;i<t.animals.size();i++) {
-    if(t.animals.get(i) instanceof FishFood) {
-      foods.add(i);
+  FishFood closestFood(){
+    FishFood minFood = null;
+    float minDist = 0;
+    for(int i = 0; i < t.animals.size(); i++){
+      Animal currentAnimal = t.animals.get(i);
+      if(currentAnimal instanceof FishFood){
+        if(minFood == null){
+          minFood = (FishFood) currentAnimal;
+          minDist = dist(minFood.cx,minFood.cy,this.cx,this.cy);
+        }
+        if(dist(currentAnimal.cx,currentAnimal.cy,this.cx,this.cy) < minDist){
+          minFood = (FishFood) currentAnimal;
+          minDist = dist(minFood.cx,minFood.cy,this.cx,this.cy);
+        }
+      }
     }
-   }
+    return minFood;
   }
-  void eat() {
-   for(int i=1;i<foods.size();i++){
-    if(cx<=t.animals.get(foods.get(i)).cx+xw/4 && cx >= t.animals.get(foods.get(i)).cx && cy<=t.animals.get(foods.get(i)).cy+yw/4 && cy >= t.animals.get(foods.get(i)).cy) {
-      lifespan++;
-      println(lifespan);
-      t.animals.remove(foods.get(i));
-      foods.remove(i);
-   }
-   
+  void eat(FishFood food) {
+   if (cx <= food.x + food.xw)
   }
 }
+}
+void checkEat(FishFood food){
+    if((withinX(food)) && (withinY(food))){
+      tank.animals.remove(food);
+      hunger += 100;
+    }
+  }
+  boolean withinX(Animal food){
+    return (x <= food.x + food.xWidth) && (x + xWidth >= food.x);
+  }
+  boolean withinY(Animal food){
+    return (y <= food.y + food.yHeight) && (y + yHeight >= food.y);
+  }
 }
