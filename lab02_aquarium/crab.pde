@@ -9,7 +9,7 @@ class crab extends Animal {
   void display(){
   float xScaleFactor = float(xw)/170;
   float yScaleFactor = float(yw)/140;
-  fill(255,0,0);
+  fill(cc);
   pushMatrix();
   if (corpselife > 0) {
   translate(cx,cy);
@@ -50,8 +50,8 @@ class crab extends Animal {
   vertex(35*xScaleFactor,120*yScaleFactor);
   endShape(CLOSE);}
   else{
-      fill(150);
-      rect(cx,cy,xw,yw);}
+    
+      t.animals.remove(t.animals.indexOf(this));}
   popMatrix();
   }
   void move() {

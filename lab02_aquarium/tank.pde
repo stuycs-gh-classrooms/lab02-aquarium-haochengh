@@ -42,6 +42,8 @@ class Tank {
    void moveAnimals() {
      for (int i=0;i<animals.size();i++) {
        animals.get(i).move();
+       animals.get(i).listfoods();
+       animals.get(i).eat();
      }
    }
 }

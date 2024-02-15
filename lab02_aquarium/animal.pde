@@ -5,6 +5,7 @@ class Animal {
   int xw, yw;
   int lifespan; 
   int corpselife;
+  ArrayList<Integer> foods;
   
   Animal(int xx, int yy) {
    cx = xx;
@@ -13,6 +14,7 @@ class Animal {
    xspeed = yspeed = 1;
    xw = 40;
    yw = 20;
+   foods=new ArrayList<Integer>();
    lifespan = 400;
    corpselife=200;
    int xd = rand(2);
@@ -61,8 +63,8 @@ class Animal {
       endShape(CLOSE);
       }
       else{
-      fill(150);
-      rect(cx,cy,xw,yw);}
+      t.animals.remove(t.animals.indexOf(this));
+  }
       
       popMatrix();
   }
@@ -97,4 +99,23 @@ class Animal {
   int rand(int x){
    return int(random(x)); 
   }
+  
+  void listfoods() {
+   for (int i =0;i<t.animals.size();i++) {
+    if(t.animals.get(i) instanceof FishFood) {
+      foods.add(i);
+    }
+   }
+  }
+  void eat() {
+   for(int i=1;i<foods.size();i++){
+    if(cx<=t.animals.get(foods.get(i)).cx+xw/4 && cx >= t.animals.get(foods.get(i)).cx && cy<=t.animals.get(foods.get(i)).cy+yw/4 && cy >= t.animals.get(foods.get(i)).cy) {
+      lifespan++;
+      println(lifespan);
+      t.animals.remove(foods.get(i));
+      foods.remove(i);
+   }
+   
+  }
+}
 }
