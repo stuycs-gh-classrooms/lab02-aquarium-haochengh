@@ -5,11 +5,12 @@ class Animal {
   int xw, yw;
   int lifespan; 
   int corpselife;
-  
+  boolean eating;
   Animal(int xx, int yy) {
    cx = xx;
    cy = yy;
    cc = #ff00f7;
+   eating=true;
    xspeed = yspeed = 1;
    xw = 40;
    yw = 20;
@@ -101,6 +102,7 @@ class Animal {
   FishFood closestFood(){
     FishFood minFood = null;
     float minDist = 0;
+    if (eating) {
     for(int i = 0; i < t.animals.size(); i++){
       Animal currentAnimal = t.animals.get(i);
       if(currentAnimal instanceof FishFood){
@@ -113,24 +115,19 @@ class Animal {
           minDist = dist(minFood.cx,minFood.cy,this.cx,this.cy);
         }
       }
-    }
+    
+    }}
     return minFood;
+    
   }
   void eat(FishFood food) {
-   if (cx <= food.x + food.xw)
+    if (eating) {
+   if ((cx <= food.cx + food.xw && cx+food.xw>=food.cx) && (cy <= food.cy + food.yw) && (cy + yw >= food.cy)) {
+     t.animals.remove(food);
+     lifespan += 100;
   }
-}
-}
-void checkEat(FishFood food){
-    if((withinX(food)) && (withinY(food))){
-      tank.animals.remove(food);
-      hunger += 100;
     }
-  }
-  boolean withinX(Animal food){
-    return (x <= food.x + food.xWidth) && (x + xWidth >= food.x);
-  }
-  boolean withinY(Animal food){
-    return (y <= food.y + food.yHeight) && (y + yHeight >= food.y);
-  }
 }
+}
+
+  

@@ -12,6 +12,9 @@ void setup() {
   tankH = height - 50;
   t = new Tank(tankX, tankY, tankW, tankH, floorH);
   t.display();
+  for (int i =0;i<15;i++) {
+   t.animals.add(new FishFood(int(random(tankX+1,tankW)),int(random(tankY,height-floorH)))); 
+  }
 }//setup
 
 
@@ -19,6 +22,11 @@ void draw() {
   background(150);
   t.moveAnimals();
   t.display();
+  if (frameCount % 600 == 0) {
+   for (int i =0;i<15;i++) {
+   t.animals.add(new FishFood(int(random(tankX+1,tankW)),int(random(tankY,height-floorH)))); 
+  } 
+  }
 }
 
 void mouseClicked() {

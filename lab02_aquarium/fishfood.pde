@@ -4,5 +4,7 @@ class FishFood extends Animal{
     cc = color(200,200,0);
     yw/=4;
     xw/=4;
+    lifespan=1000;
+    eating=false;
   }
 }

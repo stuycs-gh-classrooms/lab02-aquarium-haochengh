@@ -3,6 +3,7 @@ class rock extends Animal {
   super(xx, yy);
   yspeed = 2; 
   cc = #636363;
+  eating=false;
  }
  void display() {
   fill(cc);
